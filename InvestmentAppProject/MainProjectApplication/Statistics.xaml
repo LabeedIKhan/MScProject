@@ -1,0 +1,65 @@
+﻿<Window x:Class="MainProjectApplication.Window2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MainProjectApplication"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        mc:Ignorable="d"
+        Title="Statistics" Height="691.357" Width="921.709"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <!-- =========Charts===========
+      This file uses and exnternal chart creation package
+      by livecharts added to project as nuget package 
+      from visual studio nuget package manager. 
+      The website of live charts is https://lvcharts.net/
+      usage idea has been taken from 
+      https://lvcharts.net/App/examples/wpf/start
+      and more information is avaiable from nuget
+      official site https://www.nuget.org/packages/LiveCharts.Wpf/
+      auther and owner BetoRodriguez 
+      To see installed packages right click on project name
+      and select Manage Nuget package and select installed packages.-->
+
+
+    <Border BorderBrush="#FF000000"  BorderThickness="2" CornerRadius="5" Margin="0,0,0.4,2.8">
+        <Grid Background="LightBlue" Margin="0.4,0.4,0,-2.8">
+
+            <Label Content="Summary Statistics" Margin="71,0,676.8,624.6" FontFamily="Georgia" FontSize="14"></Label>
+            <Label Content="Frequency of Movement" Margin="559,0,148.8,624.6" FontFamily="Georgia" FontSize="14"></Label>
+
+            <!--Summary Statistics Grid-->
+            <DataGrid x:Name="StatGrid" Margin="71,38,409.8,335.6" RowBackground="LightPink" IsReadOnly="True"
+                      AutoGenerateColumns="False" Background="LightYellow" RowHeight="30">
+
+                <DataGrid.Columns>
+                    <!--Binded with datasource here with Array of Arrays-->
+                    <DataGridTextColumn Binding="{Binding [0]}" Header="Details" Width="210"></DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding [1]}" Header="Values" Width="220"></DataGridTextColumn>
+                </DataGrid.Columns>
+
+            </DataGrid>
+
+            <!-- Pie Chart package information for chart description above-->
+            <lvc:PieChart Name="StockMovement" Margin="559,43,35.8,335.6" Background="LightYellow"/>
+
+            <!-- Line Chart package information for chart description above-->
+            <lvc:CartesianChart Name="IndividualStock"   Margin="41,358,35.8,82.6">
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis Title="Average Earning"></lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Title="Months"></lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+
+                </lvc:CartesianChart>
+               <!-- Pressing ok will close this window-->
+                <Button x:Name="StatClose" Content="OK" Margin="618,580,104.8,26.6"
+                        Background="Turquoise" Click="StatClose_Click"/>
+
+        </Grid>
+    </Border>
+</Window>
